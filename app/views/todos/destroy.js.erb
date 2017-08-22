@@ -1,0 +1,7 @@
+<% if !@todo.persisted? %>
+  $("#todo_<%= @todo.id %>").remove();
+<% else %>
+  alert('error');
+<% end %>
+
+$('#tfoot').html('<%= j render "tfoot" %>');

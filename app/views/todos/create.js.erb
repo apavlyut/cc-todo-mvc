@@ -1,0 +1,10 @@
+<% if @todo.errors.empty? %>
+  $("#todos").prepend('<%=j render @todo %>');
+  $('#todo_form').html("<%= j render partial: 'todos/form', object: Todo.new, as: :todo %>");
+  $('#todo_text').focus();
+<% else %>
+  $('#todo_form').html("<%= j render partial: 'todos/form', object: @todo, as: :todo %>");
+  $('#todo_text').focus();
+<% end %>
+
+$('#tfoot').html('<%= j render "tfoot" %>');
