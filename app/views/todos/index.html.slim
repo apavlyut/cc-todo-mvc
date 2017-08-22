@@ -1,15 +1,13 @@
 center
-  h1.display-3 todos
+  h1.display-2 todos
 
 br
 
 .container
-
   .row
-    .col-md-2
-    .col-md-8
-
-      table.table.table-bordered.mr-auto.table-striped
+    .col-md-3
+    .col-md-6
+      table.table.table-bordered.table-striped
         thead
           tr
             td#todo_form colspan="3" = render partial: 'todos/form', object: Todo.new, as: :todo
