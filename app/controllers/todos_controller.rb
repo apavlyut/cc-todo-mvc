@@ -1,25 +1,26 @@
 class TodosController < ApplicationController
   before_action :set_todo, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate, except: [:index]
 
   # GET /todos
   # GET /todos.json
   def index
-    @todos = Todo.order(created_at: :desc)
+    # @todos = current_user.todos.order(created_at: :desc)
   end
 
   def active
-    @todos = Todo.active
+    @todos = current_user.todos.active
     render 'index'
   end
 
   def clear
-    Todo.completed.destroy_all
-    @todos = Todo.all
+    current_user.todos.completed.destroy_all
+    @todos = current_user.todos
     render 'index'
   end
 
   def completed
-    @todos = Todo.completed
+    @todos = current_user.todos.completed
     render 'index'
   end
 
@@ -40,7 +41,7 @@ class TodosController < ApplicationController
   # POST /todos
   # POST /todos.json
   def create
-    @todo = Todo.new(todo_params)
+    @todo = current_user.todos.new(todo_params)
 
     respond_to do |format|
       if @todo.save
@@ -85,7 +86,7 @@ class TodosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_todo
-      @todo = Todo.find(params[:id])
+      @todo = current_user.todos.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
