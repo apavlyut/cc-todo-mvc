@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :set_comment, only: [:show, :edit, :update, :remove, :destroy]
 
   # GET /comments
   # GET /comments.json
@@ -28,6 +28,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        TodoMailer.comment_added(@comment).deliver
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
         format.js
@@ -51,6 +52,13 @@ class CommentsController < ApplicationController
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def remove
+    if @comment.todo.user_id == current_user.id
+      @comment.destroy
+    end
+    redirect_to @comment.todo
   end
 
   # DELETE /comments/1

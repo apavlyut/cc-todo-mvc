@@ -1,0 +1,13 @@
+/ - content_for :preheader, 'Это прехедер который попадет в темплейт до тела сообщения'
+
+h3 Привет, #{@comment.todo.user.email}, ваш туду прокомментировали.
+
+p #{@comment.todo.user.email} пишет:
+
+p = @comment.text
+
+hr
+
+= link_to 'Перейти к комментарию', @comment.todo
+'|
+= link_to 'Это спамер, удалить камент', remove_comment_url(@comment)

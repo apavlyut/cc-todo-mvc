@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :comments
+  resources :comments do
+    member do
+      get :remove
+    end
+  end
+  
   namespace :admin do
     root to: 'users#index'
   end
