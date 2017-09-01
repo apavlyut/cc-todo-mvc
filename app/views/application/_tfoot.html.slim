@@ -1,6 +1,6 @@
 tr
-  td colspan="3"
-    '#{Todo.active.count} items left
+  td colspan="4"
+    '#{current_user.todos.active.count} items left
     '
     = link_to 'All', root_path, remote: true
     '

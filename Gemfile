@@ -57,3 +57,7 @@ gem 'slim-rails'
 gem 'simple_form'
 gem 'bootstrap', '~> 4.0.0.beta'
 gem 'font-awesome-rails'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.3.3'
+end
+gem 'active_link_to'

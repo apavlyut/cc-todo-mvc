@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :todos do
     collection do
-      get :active, :completed, :clear
+      get :active, :completed, :clear, :my
     end
   end
   resource :session

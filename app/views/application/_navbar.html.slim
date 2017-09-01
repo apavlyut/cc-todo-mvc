@@ -1,0 +1,17 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  .container
+    = link_to 'TodoMVC', root_path, class: 'navbar-brand'
+    button.navbar-toggler aria-controls="todonavbar" aria-expanded="false" aria-label=("Toggle navigation") data-target="#todonavbar" data-toggle="collapse" type="button" 
+      span.navbar-toggler-icon
+    #todonavbar.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        = active_link_to 'Все туду', root_path, class: 'nav-link', wrap_tag: :li, wrap_class: 'nav-item'
+        - if signed_in?
+          = active_link_to 'Мои туду', my_todos_path, class: 'nav-link', wrap_tag: :li, wrap_class: 'nav-item'
+      ul.navbar-nav.mr-sm-2
+        - if signed_in?
+          = active_link_to "#{current_user.email}", '#', class: 'nav-link', wrap_tag: :li, wrap_class: 'nav-item'
+          = active_link_to 'Выход', logout_path, class: 'nav-link', wrap_tag: :li, wrap_class: 'nav-item'
+        - else
+          = active_link_to 'Авторизоваться', new_session_path, class: 'nav-link', wrap_tag: :li, wrap_class: 'nav-item'
+  

@@ -5,7 +5,12 @@ class TodosController < ApplicationController
   # GET /todos
   # GET /todos.json
   def index
-    # @todos = current_user.todos.order(created_at: :desc)
+    @todos = Todo.order(created_at: :desc)
+  end
+
+  def my
+    @todos = current_user.todos.order(created_at: :desc)
+    render 'index'
   end
 
   def active

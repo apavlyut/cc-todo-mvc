@@ -10,7 +10,9 @@ tr id="todo_#{todo.id}"
           = todo.text
       - else
         = todo.text
-  td style="width: 20px"
+  td.text-center
+    = todo.user.email
+  td.text-center style="width: 100px"
     = link_to todo do
       # 
       i.fa.fa-search

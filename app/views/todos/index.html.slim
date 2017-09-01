@@ -5,39 +5,22 @@ br
 
 .container
   .row
-    .col-md-3
-    .col-md-6
+    .col-md-2
+    .col-md-8
       - if signed_in?
         table.table.table-bordered.table-striped
           thead
             tr
-              td colspan="2" #{current_user.email}
-              td = link_to 'Выйти', logout_path
-            tr
-              td#todo_form colspan="3" = render partial: 'todos/form', object: Todo.new, as: :todo
+              td#todo_form colspan="4" = render partial: 'todos/form', object: Todo.new, as: :todo
 
           tbody#todos
-            / = render current_user.todos.order(created_at: :desc)
-
-            = render partial: 'todos/todo', collection: current_user.todos.order(created_at: :desc)
-
+            = render partial: 'todos/todo', collection: @todos
           tfoot#tfoot = render 'tfoot'
-
-
-        table.table.table-bordered.table-striped
-          thead
-            tr
-              td colspan="2" Не мои туду
-
-          tbody#todos
-
-            = render partial: 'todos/todo', collection: Todo.where.not(user_id: current_user.id).order(created_at: :desc)
 
       - else
         .card
           .p-4
             p Вы не авторизованы
-            = link_to 'Авторизоваться', new_session_path
 
   / br
 
