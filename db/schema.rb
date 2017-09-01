@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170825074942) do
+ActiveRecord::Schema.define(version: 20170901131642) do
 
   create_table "todos", force: :cascade do |t|
     t.string "text"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20170825074942) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.text "demo"
     t.index ["user_id"], name: "index_todos_on_user_id"
   end
 
@@ -26,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170825074942) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role", default: 0
   end
 
 end

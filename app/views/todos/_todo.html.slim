@@ -9,6 +9,8 @@ tr id="todo_#{todo.id}"
           = todo.text
       - else
         = todo.text
+    hr
+    = link_to 'alert', todo, remote: true
   td style="width: 20px"
     = link_to todo, method: :delete, remote: true, class: 'text-danger' do
       i.fa.fa-trash

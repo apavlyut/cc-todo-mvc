@@ -27,6 +27,12 @@ class TodosController < ApplicationController
   # GET /todos/1
   # GET /todos/1.json
   def show
+    respond_to do |format|
+      format.html # show.html
+      format.json { render json: @todo.to_json, status: :ok }
+      format.js
+      format.rtf # { render text: 'hello' }
+    end
   end
 
   # GET /todos/new

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    root to: 'users#index'
+  end
+
   resources :todos do
     collection do
       get :active, :completed, :clear

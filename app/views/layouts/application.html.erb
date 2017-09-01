@@ -9,6 +9,14 @@
   </head>
 
   <body>
+    <br>
+    
+    <div class='container'>
+      <%= link_to 'Главная страница', root_path, class: 'btn btn-secondary' %>
+      <%= link_to 'Главная страница админки', admin_root_path, class: 'btn btn-secondary' if admin? %>
+    </div>
+    
+    <hr>
     <%= yield %>
   </body>
 </html>

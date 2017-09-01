@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title TodoMvc
+    = csrf_meta_tags
+    
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    br/
+    .container
+      h1 Админка
+      = link_to 'Главная страница админки', admin_root_path, class: 'btn btn-secondary'
+      = link_to 'Главная страница сайта', root_path, class: 'btn btn-secondary'
+      hr/
+      = yield

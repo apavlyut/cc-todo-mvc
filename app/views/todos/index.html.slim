@@ -16,7 +16,12 @@ br
             tr
               td#todo_form colspan="3" = render partial: 'todos/form', object: Todo.new, as: :todo
 
-          tbody#todos = render current_user.todos.order(created_at: :desc)
+          tbody#todos 
+
+            / = render current_user.todos.order(created_at: :desc)
+
+            = render partial: 'todos/todo', collection: current_user.todos.order(created_at: :desc)
+
           tfoot#tfoot = render 'tfoot'
       - else
         .card
