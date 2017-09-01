@@ -1,0 +1,10 @@
+= simple_form_for(comment, remote: true) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :todo_id, as: :hidden
+    = f.input :text
+    = f.input :author_id, as: :hidden
+
+  .form-actions
+    = f.button :submit, 'Прокомментировать', class: 'btn btn-secondary'

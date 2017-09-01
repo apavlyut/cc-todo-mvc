@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :comments
   namespace :admin do
     root to: 'users#index'
   end

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170901131642) do
+ActiveRecord::Schema.define(version: 20170901151233) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "todo_id"
+    t.text "text"
+    t.integer "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["todo_id"], name: "index_comments_on_todo_id"
+  end
 
   create_table "todos", force: :cascade do |t|
     t.string "text"
@@ -28,6 +37,7 @@ ActiveRecord::Schema.define(version: 20170901131642) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 0
+    t.boolean "banned"
   end
 
 end

@@ -1,3 +1,17 @@
 .container
-  = render partial: 'todos/todo', object: @todo, as: :todo
-  / = render @todo
+  p
+    strong туду:
+    br
+    = @todo.text
+  p
+    strong автор:
+    br
+    = @todo.user.email
+
+  br
+  
+  h5 Комментарии: #{@todo.comments.count} шт.
+  #comments = render @todo.comments
+
+  hr
+  #comment_form = render partial: 'comments/form', object: Comment.new(todo_id: @todo.id, author_id: current_user.id), as: :comment

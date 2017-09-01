@@ -1,0 +1,7 @@
+<% if !@comment.persisted? %>
+  $("#comment_<%= @comment.id %>").remove();
+<% else %>
+  alert('error deleting comment');
+<% end %>
+
+$('#tfoot').html('<%= j render "tfoot" %>');

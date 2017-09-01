@@ -1,0 +1,7 @@
+<% if @comment.errors.empty? %>
+  $("#comments").append('<%=j render @comment %>');
+  $('#comment_form').html("<%= j render partial: 'comments/form', object: Comment.new(todo_id: @comment.todo_id, author_id: current_user.id), as: :comment %>");
+<% else %>
+  $('#comment_form').html("<%= j render partial: 'comments/form', object: @comment, as: :comment %>");
+<% end %>
+$('#comment_text').focus();

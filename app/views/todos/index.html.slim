@@ -16,13 +16,23 @@ br
             tr
               td#todo_form colspan="3" = render partial: 'todos/form', object: Todo.new, as: :todo
 
-          tbody#todos 
-
+          tbody#todos
             / = render current_user.todos.order(created_at: :desc)
 
             = render partial: 'todos/todo', collection: current_user.todos.order(created_at: :desc)
 
           tfoot#tfoot = render 'tfoot'
+
+
+        table.table.table-bordered.table-striped
+          thead
+            tr
+              td colspan="2" Не мои туду
+
+          tbody#todos
+
+            = render partial: 'todos/todo', collection: Todo.where.not(user_id: current_user.id).order(created_at: :desc)
+
       - else
         .card
           .p-4

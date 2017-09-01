@@ -1,7 +1,8 @@
 tr id="todo_#{todo.id}"
   td style="width: 20px"
-    = simple_form_for(todo, remote: true) do |f|
-      = f.input :completed, label: false, input_html: {onchange: '$(this).closest("form").submit();', id: "todo_competed_#{todo.id}"}
+    - if current_user.id == todo.user_id 
+      = simple_form_for(todo, remote: true) do |f|
+        = f.input :completed, label: false, input_html: {onchange: '$(this).closest("form").submit();', id: "todo_competed_#{todo.id}"}
   td
     label for="todo_competed_#{todo.id}" style="cursor: pointer; cursor: hand"
       - if todo.completed?
@@ -9,8 +10,11 @@ tr id="todo_#{todo.id}"
           = todo.text
       - else
         = todo.text
-    hr
-    = link_to 'alert', todo, remote: true
   td style="width: 20px"
-    = link_to todo, method: :delete, remote: true, class: 'text-danger' do
-      i.fa.fa-trash
+    = link_to todo do
+      # 
+      i.fa.fa-search
+    '
+    - if current_user.id == todo.user_id
+      = link_to todo, method: :delete, remote: true, class: 'text-danger' do
+        i.fa.fa-trash

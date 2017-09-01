@@ -1,0 +1,6 @@
+.comment id="comment_#{comment.id}"
+  p = comment.text
+  small = comment.author.email
+  - if comment.todo.user_id == current_user.id
+    = link_to 'Удалить', comment, remote: true, method: :delete,  data: {confirm: 'Точно удалить?'}
+  hr
