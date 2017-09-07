@@ -39,7 +39,6 @@ end
 
 group :development do
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
@@ -62,7 +61,4 @@ end
 gem 'active_link_to'
 gem 'sinatra'
 gem 'sidekiq'
-
-group :production do
-  gem 'pg'
-end
+gem 'pg'
