@@ -28,7 +28,9 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        TodoMailer.comment_added(@comment).deliver
+        1.times do
+          TodoJob.perform_later(@comment.id)
+        end
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
         format.js

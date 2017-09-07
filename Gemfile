@@ -62,3 +62,5 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
 gem 'active_link_to'
+gem 'sinatra'
+gem 'sidekiq'
