@@ -96,5 +96,6 @@ ActionMailer::Base.smtp_settings = {
   :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
   :password       => ENV['MAILGUN_SMTP_PASSWORD'],
   :domain         => ENV['APP_HOST'],
+  :host           => ENV['APP_HOST'],
   :authentication => :plain,
 }
