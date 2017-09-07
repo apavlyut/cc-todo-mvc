@@ -8,6 +8,7 @@ class Comment < ApplicationRecord
   def notify_todo_owner
     puts "connecting to mail server ..."
     sleep 3
+    TodoMailer.comment_added(self).deliver_now
     puts "connected!"
     puts "delivered!"
   end
