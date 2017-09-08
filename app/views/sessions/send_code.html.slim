@@ -7,9 +7,13 @@ br
   .row
     .col-md-3
     .col-md-6
-      = simple_form_for :session, url: session_path do |f|
-        = f.input :email
-        = f.input :password
+
+      - unless @message.blank?
+        p #{@message}.
+
+      = simple_form_for :session, url: verify_code_session_path do |f|
+        = f.input :phone, disabled: true, input_html: { class: 'disabled', value: @phone || session[:phone]}
+        = f.input :code
         .row
           .col-5
             = f.submit 'Войти в TODO', class: 'btn btn-primary'

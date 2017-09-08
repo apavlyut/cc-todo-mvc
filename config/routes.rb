@@ -1,6 +1,6 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
-  
+
   mount Sidekiq::Web => '/sidekiq2'
 
   resources :comments do
@@ -18,9 +18,15 @@ Rails.application.routes.draw do
       get :active, :completed, :clear, :my
     end
   end
-  resource :session
+  resource :account
+  resource :session do
+    member do
+      post :verify_code, :send_code
+    end
+  end
 
   get 'login', to: 'sessions#new'
+  get 'sms_login', to: 'sessions#sms_login'
   get 'logout', to: 'sessions#destroy'
 
   root to: 'todos#index'
