@@ -1,6 +1,11 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
 
+  resources :announces do
+    member do
+      get :deliver
+    end
+  end
   mount Sidekiq::Web => '/sidekiq2'
 
   resources :comments do

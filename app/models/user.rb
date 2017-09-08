@@ -14,6 +14,18 @@ class User < ApplicationRecord
     update code: code_to_send
   end
 
+  def display_name
+    "#{phone} - #{email}"
+  end
+
+  def send_sms_announce(announce)
+    puts "sending sms announce to user"
+    if send_sms?
+      sms = SMSC.new()
+      ret = sms.send_sms(ENV['SMS_PHONE'], announce.message)
+    end
+  end
+
   private
     def genenerate_code
       @g_code ||= rand.to_s[2..5]

@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170908093447) do
+ActiveRecord::Schema.define(version: 20170908095814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "announce_users", force: :cascade do |t|
+    t.bigint "announce_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["announce_id"], name: "index_announce_users_on_announce_id"
+    t.index ["user_id"], name: "index_announce_users_on_user_id"
+  end
+
+  create_table "announces", force: :cascade do |t|
+    t.string "title"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.bigint "todo_id"
@@ -47,6 +63,8 @@ ActiveRecord::Schema.define(version: 20170908093447) do
     t.boolean "send_email", default: false
   end
 
+  add_foreign_key "announce_users", "announces"
+  add_foreign_key "announce_users", "users"
   add_foreign_key "comments", "todos"
   add_foreign_key "todos", "users"
 end

@@ -1,0 +1,10 @@
+= simple_form_for(@announce) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :title
+    = f.collection_check_boxes :user_ids, User.all, :id, :display_name
+    = f.input :message
+
+  .form-actions
+    = f.button :submit
