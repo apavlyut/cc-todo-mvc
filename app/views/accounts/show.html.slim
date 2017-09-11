@@ -1,0 +1,7 @@
+h1 Настройки
+hr
+
+= simple_form_for current_user, url: account_path do |f|
+  = f.input :send_sms
+  = f.input :send_email
+  = f.submit 'Сохранить настройки', class: 'btn btn-primary'

@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170901151233) do
+ActiveRecord::Schema.define(version: 20170908095814) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "announce_users", force: :cascade do |t|
+    t.bigint "announce_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["announce_id"], name: "index_announce_users_on_announce_id"
+    t.index ["user_id"], name: "index_announce_users_on_user_id"
+  end
+
+  create_table "announces", force: :cascade do |t|
+    t.string "title"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "todo_id"
+    t.bigint "todo_id"
     t.text "text"
     t.integer "author_id"
     t.datetime "created_at", null: false
@@ -26,7 +45,7 @@ ActiveRecord::Schema.define(version: 20170901151233) do
     t.boolean "completed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.text "demo"
     t.index ["user_id"], name: "index_todos_on_user_id"
   end
@@ -38,6 +57,14 @@ ActiveRecord::Schema.define(version: 20170901151233) do
     t.datetime "updated_at", null: false
     t.integer "role", default: 0
     t.boolean "banned"
+    t.string "code"
+    t.string "phone"
+    t.boolean "send_sms", default: false
+    t.boolean "send_email", default: false
   end
 
+  add_foreign_key "announce_users", "announces"
+  add_foreign_key "announce_users", "users"
+  add_foreign_key "comments", "todos"
+  add_foreign_key "todos", "users"
 end

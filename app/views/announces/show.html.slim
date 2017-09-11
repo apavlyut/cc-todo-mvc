@@ -1,0 +1,21 @@
+p = notice
+
+h4 = @announce.title
+hr
+
+p Получатели рассылки
+ul
+  - @announce.users.each do |user|
+    li = user.display_name
+p
+  strong Message:
+  = @announce.message
+
+= link_to 'Разослать', deliver_announce_path(@announce), class: 'btn btn-primary'
+
+br
+br
+
+= link_to 'Edit', edit_announce_path(@announce)
+'  |
+= link_to 'Back', announces_path

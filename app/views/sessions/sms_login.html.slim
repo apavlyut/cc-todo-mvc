@@ -1,0 +1,21 @@
+center
+  h1.display-2 Авторизация
+
+br
+
+.container
+  .row
+    .col-md-3
+    .col-md-6
+    
+      - unless @message.blank?
+        p #{@message}.
+
+      = simple_form_for :session, url: send_code_session_path do |f|
+        = f.input :phone
+        .row
+          .col-5
+            = f.submit 'Выслать код', class: 'btn btn-primary'
+          .col-2
+          .col-5
+            = link_to 'Войти через Email', login_path, class: 'btn btn-primary'
